@@ -27,7 +27,7 @@ public class FamilyActivity extends AppCompatActivity {
 
         // Populate the list of Word objects with the English and Miwok's word list
         for(int index = 0; index < wordsEn.size(); index++)
-            words.add(new Word(wordsEn.get(index), wordsMw.get(index)));
+            words.add(new Word(wordsEn.get(index), wordsMw.get(index), 0));
 
         //Declare the ListView adapter
         WordAdapter adapter = new WordAdapter(this, words);

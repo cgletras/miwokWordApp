@@ -18,7 +18,7 @@ public class NumbersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_words_list);
 
-        // Create lists with english and their translation for Miwok words and populate them
+        // Create lists with english and their translation for Miwok words for NUMBERS and populate them
         ArrayList<String> wordsEn = new ArrayList<String>(Arrays.asList("One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"));
         ArrayList<String> wordsMw = new ArrayList<String>(Arrays.asList("Lutti", "Otiiko", "Tolookosu", "Oyyisa", "Massokka", "Temmokka", "Kenekaku", "Kawinta", "Wo'e", "Na'aacha"));
 

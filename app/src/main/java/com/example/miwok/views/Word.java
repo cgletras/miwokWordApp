@@ -6,6 +6,11 @@ public class Word {
     private String mMiwokTranslation;
     private Integer mImageId;
 
+    public Word(String defaultTranslation, String miwokTranslation) {
+        mDefaultTranslation = defaultTranslation;
+        mMiwokTranslation = miwokTranslation;
+    }
+
     public Word(String defaultTranslation, String miwokTranslation, Integer imageId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
@@ -20,5 +25,13 @@ public class Word {
         return mMiwokTranslation;
     }
 
-    public Integer getmImageId() { return mImageId; }
+    public Integer getmImageId() {
+        return mImageId;
+    }
+
+    public boolean hasImage() {
+        if (mImageId != null) {
+            return true;
+        } else return false;
+    }
 }

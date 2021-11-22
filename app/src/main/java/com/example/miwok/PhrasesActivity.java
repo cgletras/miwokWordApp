@@ -18,6 +18,9 @@ public class PhrasesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_words_list);
 
+        // Sets the category color for this activity
+        Integer activityColor = R.color.category_phrases;
+
         // Create lists with english and their translation for Miwok words for PHRASES and populate them
         ArrayList<String> wordsEn = new ArrayList<String>(Arrays.asList("Where are you going?", "What is your name?", "My name is...", "How are you feeling?", "I’m feeling good.", "Are you coming?", "Yes, I’m coming.", "I’m coming.", "Let’s go.", "Come here."));
         ArrayList<String> wordsMw = new ArrayList<String>(Arrays.asList("minto wuksus", "tinnә oyaase'nә", "oyaaset...", "michәksәs?", "kuchi achit", "әәnәs'aa?", "hәә’ әәnәm", "әәnәm", "yoowutis", "әnni'nem"));
@@ -27,10 +30,10 @@ public class PhrasesActivity extends AppCompatActivity {
 
         // Populate the list of Word objects with the English and Miwok's word list
         for(int index = 0; index < wordsEn.size(); index++)
-            words.add(new Word(wordsEn.get(index), wordsMw.get(index), 0));
+            words.add(new Word(wordsEn.get(index), wordsMw.get(index)));
 
         //Declare the ListView adapter
-        WordAdapter adapter = new WordAdapter(this, words);
+        WordAdapter adapter = new WordAdapter(this, words, activityColor);
 
         //Set the listView to populate with Words
         ListView listView = (ListView) findViewById(R.id.list);

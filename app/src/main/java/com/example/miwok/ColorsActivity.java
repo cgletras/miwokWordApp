@@ -18,11 +18,14 @@ public class ColorsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_words_list);
 
-        // Create lists with english and their translation for Miwok words for COLORS and populate them
+        // Sets the category color for this activity
+        Integer activityColor = R.color.category_colors;
+
+        // Create lists with english COLORS, their translation for Miwok words and populate them
         ArrayList<String> wordsEn = new ArrayList<String>(Arrays.asList("Red", "Green", "Brown", "Gray", "Black", "White", "Dusty Yellow", "Mustard Yellow"));
         ArrayList<String> wordsMw = new ArrayList<String>(Arrays.asList("Weṭeṭṭi", "Chokokki", "Takaakki", "Topoppi", "Kululli", "Kelelli", "Topiisә", "Chiwiiṭә"));
 
-        // Creates a list of images
+        // Creates a list of imagesIds
         ArrayList<Integer> imagesId = new ArrayList<Integer>(Arrays.asList(
                 R.drawable.color_red,
                 R.drawable.color_green,
@@ -42,9 +45,9 @@ public class ColorsActivity extends AppCompatActivity {
             words.add(new Word(wordsEn.get(index), wordsMw.get(index), imagesId.get(index)));
 
         //Declare the ListView adapter
-        WordAdapter adapter = new WordAdapter(this, words);
+        WordAdapter adapter = new WordAdapter(this, words, activityColor);
 
-        //Set the listView to populate with Words
+        //Set the listView you wish to populate with Words
         ListView listView = (ListView) findViewById(R.id.list);
 
         //Set the listView adapter

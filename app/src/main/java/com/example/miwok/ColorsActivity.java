@@ -2,7 +2,10 @@ package com.example.miwok;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.miwok.adapter.WordAdapter;
@@ -12,6 +15,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ColorsActivity extends AppCompatActivity {
+
+    private MediaPlayer mediaPlayer;
+    private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mp) {
+            releaseMediaPlayer();
+        }
+    };
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +54,26 @@ public class ColorsActivity extends AppCompatActivity {
                 R.drawable.color_mustard_yellow
             )
         );
+
+        // Creates a list of audioIds
+        ArrayList<Integer> audiosId = new ArrayList<Integer>(Arrays.asList(
+                R.raw.color_red,
+                R.raw.color_green,
+                R.raw.color_brown,
+                R.raw.color_gray,
+                R.raw.color_black,
+                R.raw.color_white,
+                R.raw.color_dusty_yellow,
+                R.raw.color_mustard_yellow
+        )
+        );
+
         //Creates a list of Word objects
-        ArrayList<Word> words = new ArrayList<Word>();
+        final ArrayList<Word> words = new ArrayList<Word>();
 
         // Populate the list of Word objects with the English and Miwok's word list
-        for(int index = 0; index < wordsEn.size(); index++)
-            words.add(new Word(wordsEn.get(index), wordsMw.get(index), imagesId.get(index)));
+        for (int index = 0; index < wordsEn.size(); index++)
+            words.add(new Word(wordsEn.get(index), wordsMw.get(index), imagesId.get(index), audiosId.get(index)));
 
         //Declare the ListView adapter
         WordAdapter adapter = new WordAdapter(this, words, activityColor);
@@ -52,5 +83,31 @@ public class ColorsActivity extends AppCompatActivity {
 
         //Set the listView adapter
         listView.setAdapter(adapter);
+
+        // Set the ListView click listener
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                releaseMediaPlayer();
+                mediaPlayer = MediaPlayer.create(ColorsActivity.this, words.get(position).getmAudioId());
+                mediaPlayer.start();
+                mediaPlayer.setOnCompletionListener(mCompletionListener);
+            }
+        });
+    }
+    private void releaseMediaPlayer() {
+
+        // If the media player is not null, then it may be currently playing a sound.
+        if (mediaPlayer != null) {
+            // Regardless of the current state of the media player, release its resources
+            // because we no longer need it.
+            mediaPlayer.release();
+
+            // Set the media player back to null. For our code, we've decided that
+            // setting the media player to null is an easy way to tell that the media player
+            // is not configured to play an audio file at the moment.
+            mediaPlayer = null;
+        }
     }
 }
+

@@ -47,10 +47,12 @@ public class WordAdapter extends ArrayAdapter<Word> {
         TextView enTextView = listItemView.findViewById(R.id.tv_english_word);
         TextView mwTextView = listItemView.findViewById(R.id.tv_miwok_word);
         ImageView mImageView = listItemView.findViewById(R.id.iv_image);
+        ImageView mPlayIcon = listItemView.findViewById(R.id.iv_play);
 
         // Set Internal Linear Layout Color
         int color = ContextCompat.getColor(getContext(), mActivityColorId);
         mLinearLayoutView.setBackgroundColor(color);
+        mPlayIcon.setBackgroundColor(color);
 
         // Set info from class into view
         enTextView.setText(currentWord.getmDefaultTranslation());

@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.example.miwok.R;
-import com.example.miwok.views.Word;
+import com.example.miwok.classes.Word;
 
 import java.util.List;
 

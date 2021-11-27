@@ -1,4 +1,4 @@
-package com.example.miwok.views;
+package com.example.miwok.classes;
 
 public class Word {
 

@@ -6,5 +6,5 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:drawSelectorOnTop="true"
-    tools:context=".NumbersActivity">
+    tools:context=".MainActivity">
 </ListView>

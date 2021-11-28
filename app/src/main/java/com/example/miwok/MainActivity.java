@@ -1,12 +1,17 @@
 package com.example.miwok;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.miwok.adapter.CategoryAdapter;
+import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,26 +20,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // declare the TextView to be clicked on
-        TextView numbers = (TextView) findViewById(R.id.numbers);
-        TextView colors = (TextView) findViewById(R.id.colors);
-        TextView family = (TextView) findViewById(R.id.family);
-        TextView phrases = (TextView) findViewById(R.id.phrases);
+        // Select the view pager
+        ViewPager viewPager = (ViewPager) findViewById(R.id.vpv_main);
 
-        //Functions that creates a click listener
-        textViewClickListenerFactory(numbers, NumbersActivity.class);
-        textViewClickListenerFactory(colors, ColorsActivity.class);
-        textViewClickListenerFactory(family, FamilyActivity.class);
-        textViewClickListenerFactory(phrases, PhrasesActivity.class);
-    }
+        // Create adapter
+        CategoryAdapter adapter = new CategoryAdapter(getSupportFragmentManager(), this);
 
-    private void textViewClickListenerFactory(TextView textView, final Class<? extends Activity> ActivityToOpen ) {
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ActivityToOpen);
-                startActivity(intent);
-            }
-        });
+        // Set adapter at the viewPager
+        viewPager.setAdapter(adapter);
+
+        // Select tabLayout
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tlv_main_tab);
+        tabLayout.setupWithViewPager(viewPager);
     }
 }
